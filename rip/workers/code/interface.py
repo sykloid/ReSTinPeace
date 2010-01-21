@@ -6,10 +6,10 @@ try :
 except ImportError :
     raise RIPError
 
-from .core import CodeDirective, CodeRole
+from .core import CodeDirective
 
 from docutils.parsers.rst.directives import register_directive
 
 register_directive('code', CodeDirective)
 
-EXPORTS = ('CodeDirective', 'CodeRole')
+EXPORTS = ('CodeDirective',)

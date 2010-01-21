@@ -52,8 +52,3 @@ class CodeDirective(Directive) :
         highlighted_text = highlight(text, lexer, HtmlFormatter(**overrides))
 
         return [nodes.raw('', highlighted_text, format = 'html')]
-
-def CodeRole() :
-    pass
-
-CodeRole.defaults = {}
