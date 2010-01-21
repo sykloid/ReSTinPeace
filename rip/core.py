@@ -9,7 +9,13 @@ class RIPException(Exception) :
 class Controller(object) :
     '''Controls the ReStuctured Text -> HTML transformation process.'''
 
-    defaults = {}
+    defaults = {
+        'doctitle_xform' : False,
+        'footnote_references' : 'superscript',
+        'initial_header_level' : 1,
+        'report_level' = 3,
+        'tab_width' : 4,
+    }
 
     def __init__(self, factories = DEFAULT_FACTORIES, **overrides) :
         self.settings = {}
