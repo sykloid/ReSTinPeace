@@ -7,6 +7,8 @@ class RIPException(Exception) :
     pass
 
 class Controller(object) :
+    '''Controls the ReStuctured Text -> HTML transformation process.'''
+
     defaults = {}
 
     def __init__(self, factories = DEFAULT_FACTORIES, **overrides) :
@@ -26,6 +28,8 @@ class Controller(object) :
                 self.settings.update(worker.defaults)
 
     def render(self, text, **overrides) :
+        '''Renders ReStructured Text into HTML.'''
+
         self.state = {}
         self.state.update(self.settings)
         self.state.update(overrides)
