@@ -13,7 +13,7 @@ class Controller(object) :
         'doctitle_xform' : False,
         'footnote_references' : 'superscript',
         'initial_header_level' : 1,
-        'report_level' = 3,
+        'report_level' : 3,
         'tab_width' : 4,
     }
 
