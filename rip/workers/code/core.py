@@ -55,3 +55,5 @@ class CodeDirective(Directive) :
 
 def CodeRole() :
     pass
+
+CodeRole.defaults = {}
