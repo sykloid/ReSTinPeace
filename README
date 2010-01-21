@@ -10,13 +10,17 @@ restrictions:
 * Only produces output for input received, i.e. does not produce full document
   output.
 
-Todo
-----
+Features
+--------
 
 * Basic output rendering.
 * Configurability for all sane options.
-* Command line runner interface.
 * Extensible architecture for including more directives/roles.
+
+Todo
+----
+
+* Command line runner interface.
 
 * Code Highlighting with Pygments.
 * LaTeX rendering of mathematical formulae.

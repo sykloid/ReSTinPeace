@@ -11,7 +11,6 @@ setup(
     author_email = 'sykora@lucentbeing.com',
 
     packages = ['rip'],
-    scripts = ['bin/rip'],
 
     url = 'http://pypi.python.org/pypi/ReSTinPeace/',
     license = 'GNU General Public License v3.0',
