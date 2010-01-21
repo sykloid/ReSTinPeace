@@ -23,3 +23,16 @@ class Controller(object) :
                 worker = getattr(interface, worker_name)
                 worker.controller = self
                 self.settings.update(worker.defaults)
+
+    def render(self, text, **overrides) :
+        self.state = {}
+        self.state.update(self.settings)
+        self.state.update(overrides)
+
+        return publish_parts(
+            text,
+            writer = Writer(),
+            settings_overrides = self.state,
+        )['fragment']
+
+markup = Controller()
