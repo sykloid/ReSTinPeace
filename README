@@ -16,12 +16,12 @@ Features
 * Basic output rendering.
 * Configurability for all sane options.
 * Extensible architecture for including more directives/roles.
+* Code Highlighting with Pygments.
 
 Todo
 ----
 
 * Command line runner interface.
 
-* Code Highlighting with Pygments.
 * LaTeX rendering of mathematical formulae.
 * URL Prefixing for resources.
