@@ -19,6 +19,14 @@ class CodeDirective(Directive) :
         'noclasses' : not_,
     }
 
+    defaults = {
+        'linenos' : False,
+        'style' : 'default',
+        'noclasses' : False,
+    }
+
+    controller = None
+
     has_content = True
 
     def run(self) :
@@ -36,7 +44,10 @@ class CodeDirective(Directive) :
                 # highlighting.
                 lexer = TextLexer()
         
-        overrides = self.options
+        # Get current state from controller, supplied options.
+        overrides = {}
+        overrides.update(self.controller.state)
+        overrides.update(self.options)
 
         highlighted_text = highlight(text, lexer, HtmlFormatter(**overrides))
 
