@@ -1,0 +1,23 @@
+===============
+ ReST in Peace
+===============
+
+RIP is a library aimed at simplifying the usage of ReStructured Text for
+publishing content on the web. As such, it operates under the following
+restrictions:
+
+* Only HTML output is produced.
+* Only produces output for input received, i.e. does not produce full document
+  output.
+
+Todo
+----
+
+* Basic output rendering.
+* Configurability for all sane options.
+* Command line runner interface.
+* Extensible architecture for including more directives/roles.
+
+* Code Highlighting with Pygments.
+* LaTeX rendering of mathematical formulae.
+* URL Prefixing for resources.
