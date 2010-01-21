@@ -8,7 +8,7 @@ except ImportError :
 
 from .core import CodeDirective, CodeRole
 
-from docutils.directives import register_directive
+from docutils.parsers.rst.directives import register_directive
 
 register_directive('code', CodeDirective)
 
