@@ -12,6 +12,7 @@ class Controller(object) :
     def __init__(self, factories = DEFAULT_FACTORIES, **overrides) :
         self.settings = {}
         self.settings.update(Controller.defaults)
+        self.settings.update(overrides)
 
         for factory in factories :
             try :
