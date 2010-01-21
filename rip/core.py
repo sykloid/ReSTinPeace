@@ -10,8 +10,8 @@ class Controller(object) :
     defaults = {}
 
     def __init__(self, factories = DEFAULT_FACTORIES, **overrides) :
-        self.defaults = {}
-        self.defaults.update(Controller.defaults)
+        self.settings = {}
+        self.settings.update(Controller.defaults)
 
         for factory in factories :
             try :
@@ -22,4 +22,4 @@ class Controller(object) :
             for worker_name in interface.EXPORTS :
                 worker = getattr(interface, worker_name)
                 worker.controller = self
-                self.defaults.update(worker.defaults)
+                self.settings.update(worker.defaults)
