@@ -3,7 +3,7 @@ from urlparse import urljoin, urlparse
 from docutils.core import publish_parts
 from docutils.writers.html4css1 import HTMLTranslator, Writer
 
-DEFAULT_FACTORIES = ()
+DEFAULT_FACTORIES = ('rip.workers.code', 'rip.workers.latex')
 
 class RIPException(Exception) :
     pass
