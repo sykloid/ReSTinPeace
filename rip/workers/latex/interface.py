@@ -32,3 +32,5 @@ from docutils.parsers.rst.roles import register_canonical_role
 
 register_directive('latex', LaTeXDirective)
 register_canonical_role('latex', LaTeXRole)
+
+EXPORTS = ('LaTeXDirective', 'LaTeXRole')
