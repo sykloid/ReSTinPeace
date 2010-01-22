@@ -17,17 +17,17 @@ class LaTeXDirective(Directive) :
     defaults = {
         'latex_command' : 'latex --interaction=nonstopmode {hash}.tex',
         'latex_convert_command' : \
-            'convert -density 120 -trim -transparent "#FFFFFF" {hash}.ps {hash}.{extension},
+            'convert -density 120 -trim -transparent "#FFFFFF" {hash}.ps {hash}.{extension}',
         'latex_document_template' : latex_document_template,
         'latex_dvips_command' : 'dvips -E {hash}.dvi -o {hash}.ps',
         'latex_font_size' : 11,
         'latex_image_directory' : os.getcwd(),
-        'latex_image_extension' : 'png'
+        'latex_image_extension' : 'png',
         'latex_image_uri' : './{image_file}',
     }
     controller = None
 
-    def render_latex_as_image(formula) :
+    def render_latex_as_image(self, formula) :
         '''Render the given formula as an image, and return its file name.'''
 
         # The name of the created image will be the hash of the formula, with
@@ -70,7 +70,7 @@ class LaTeXDirective(Directive) :
         shutil.copyfile(
             os.path.join(
                 tmpdir,
-                formula_hash _ '.' + self.controller.state['latex_image_extension'],
+                formula_hash + '.' + self.controller.state['latex_image_extension'],
             ),
             file_path
         )
@@ -83,7 +83,7 @@ class LaTeXDirective(Directive) :
 
     def run(self) :
         formula = '\n'.join(self.content)
-        image = render_latex_as_image(formula)
+        image = self.render_latex_as_image(formula)
         uri = self.controller.state['latex_image_uri'].format(image_file = image)
 
         return Image(
@@ -113,3 +113,5 @@ def LaTeXRole(name, raw, text, line, inliner, options = {}, content = []) :
         state = None,
         state_machine = None,
     ).run(), [])
+
+LaTeXRole.defaults = {}
