@@ -4,7 +4,7 @@ try :
     import pygments
     import docutils
 except ImportError :
-    raise RIPError
+    raise RIPException
 
 from .core import CodeDirective
 
