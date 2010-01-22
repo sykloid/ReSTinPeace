@@ -97,3 +97,19 @@ class LaTeXDirective(Directive) :
             state = self.state,
             state_machine = self.state_machine,
         ).run()
+
+def LaTeXRole(name, raw, text, line, inliner, options = {}, content = []) :
+    formula = text.replace('\\\\', '\\')
+    uri = render_latex_as_image(formula)
+
+    return (Image(
+        name = name,
+        arguments = [uri],
+        options = {'classes' : ['latex', 'latex-inline']},
+        content = None,
+        lineno = line,
+        content_offset = None,
+        block_text = None,
+        state = None,
+        state_machine = None,
+    ).run(), [])
