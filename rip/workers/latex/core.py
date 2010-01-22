@@ -12,8 +12,12 @@ class LaTeXDirective(Directive) :
 
     has_content = True
 
-    defaults = {}
+    defaults = {
+        'latex_image_uri' : './{image_file}',
+    }
     controller = None
+
+    def render_latex_as_image(formula
 
     def run(self) :
         formula = '\n'.join(self.content)
