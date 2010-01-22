@@ -42,7 +42,6 @@ class Controller(object) :
     def __init__(self, factories = DEFAULT_FACTORIES, **overrides) :
         self.settings = {}
         self.settings.update(Controller.defaults)
-        self.settings.update(overrides)
 
         for factory in factories :
             try :
@@ -54,6 +53,8 @@ class Controller(object) :
                 worker = getattr(interface, worker_name)
                 worker.controller = self
                 self.settings.update(worker.defaults)
+
+        self.settings.update(overrides)
 
     def render(self, text, **overrides) :
         '''Renders ReStructured Text into HTML.'''
