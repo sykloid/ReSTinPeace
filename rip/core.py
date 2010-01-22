@@ -1,10 +1,31 @@
+from urlparse import urljoin, urlparse
+
 from docutils.core import publish_parts
-from docutils.writers.html4css1 import Writer
+from docutils.writers.html4css1 import HTMLTranslator, Writer
 
 DEFAULT_FACTORIES = ()
 
 class RIPException(Exception) :
     pass
+
+class ReSTinPeaceHTMLTranlsator(HTMLTranslator) :
+
+    controller = None
+
+    def __init__(self, document) :
+        HTMLTranslator.__init__(self, document)
+
+    def visit_image(self, node) :
+        if not urlparse(node['uri']).scheme :
+            # Don't insert prefix if URL is absolute.
+            node['uri'] = urljoin(self.controller.state['image_uri_prefix'], node['uri'])
+
+        return HTMLTranslator.visit_image(self, node)
+
+class ReSTinPeaceHTMLWriter(Writer) :
+    def __init__(self) :
+        Writer.__init__(self)
+        self.translator_class = ReSTinPeaceHTMLTranlsator
 
 class Controller(object) :
     '''Controls the ReStuctured Text -> HTML transformation process.'''
@@ -15,6 +36,7 @@ class Controller(object) :
         'initial_header_level' : 1,
         'report_level' : 3,
         'tab_width' : 4,
+        'image_uri_prefix' : '',
     }
 
     def __init__(self, factories = DEFAULT_FACTORIES, **overrides) :
@@ -40,9 +62,11 @@ class Controller(object) :
         self.state.update(self.settings)
         self.state.update(overrides)
 
+        ReSTinPeaceHTMLTranlsator.controller = self
+
         return publish_parts(
             text,
-            writer = Writer(),
+            writer = ReSTinPeaceHTMLWriter(),
             settings_overrides = self.state,
         )['fragment']
 
