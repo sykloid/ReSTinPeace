@@ -86,10 +86,17 @@ class LaTeXDirective(Directive) :
         image = self.render_latex_as_image(formula)
         uri = self.controller.state['latex_image_uri'].format(image_file = image)
 
+        options = {'align' : 'center', 'classes' : ['latex']}
+        options.update(self.options)
+
+        # Nasty hack to make the role and directive play friendly.
+        if not options['align'] :
+            del options['align']
+
         return Image(
             name = self.name,
             arguments = [uri],
-            options = {'align' : 'center', 'classes' : ['latex',]},
+            options = options,
             content = None,
             lineno = self.lineno,
             content_offset = self.content_offset,
@@ -99,14 +106,12 @@ class LaTeXDirective(Directive) :
         ).run()
 
 def LaTeXRole(name, raw, text, line, inliner, options = {}, content = []) :
-    formula = text.replace('\\\\', '\\')
-    uri = render_latex_as_image(formula)
-
-    return (Image(
+    formula = raw.split('`')[1].replace('\\\\', '\\')
+    return (LaTeXDirective(
         name = name,
-        arguments = [uri],
-        options = {'classes' : ['latex', 'latex-inline']},
-        content = None,
+        arguments = [],
+        options = {'align' : None, 'classes' : ['latex', 'latex-inline']},
+        content = [formula],
         lineno = line,
         content_offset = None,
         block_text = None,
