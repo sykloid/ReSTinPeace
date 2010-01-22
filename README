@@ -18,10 +18,9 @@ Features
 * Extensible architecture for including more directives/roles.
 * Code Highlighting with Pygments.
 * LaTeX rendering of mathematical formulae.
+* URL Prefixing for resources.
 
 Todo
 ----
 
 * Command line runner interface.
-
-* URL Prefixing for resources.
