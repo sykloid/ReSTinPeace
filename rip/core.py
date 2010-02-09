@@ -56,8 +56,8 @@ class Controller(object) :
 
         self.settings.update(overrides)
 
-    def render(self, text, **overrides) :
-        '''Renders ReStructured Text into HTML.'''
+    def render_all(self, text, **overrides) :
+        '''Renders ReStructured Text into HTML, returns all parts.'''
 
         self.state = {}
         self.state.update(self.settings)
@@ -69,6 +69,11 @@ class Controller(object) :
             text,
             writer = ReSTinPeaceHTMLWriter(),
             settings_overrides = self.state,
-        )['fragment']
+        )
+
+    def render(self, text, **overrides) :
+        '''Renders ReStructured Text into HTML.'''
+
+        return self.render_all(text, **overrides)['fragment']
 
 markup = Controller()
