@@ -10,7 +10,7 @@ setup(
     author = 'P.C. Shyamshankar',
     author_email = 'sykora@lucentbeing.com',
 
-    packages = ['rip'],
+    packages = ['rip', 'rip.workers', 'rip.workers.code', 'rip.workers.latex'],
 
     url = 'http://pypi.python.org/pypi/ReSTinPeace/',
     license = 'GNU General Public License v3.0',
